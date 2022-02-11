@@ -175,7 +175,7 @@ class ShipmentOptionTest {
         Object other = ShipmentOption.builder()
             .withPackaging(otherPackaging)
             .withFulfillmentCenter(fulfillmentCenter)
-            .withItem(item)
+            .withItem(otherItem)
             .build();
 
         // WHEN
