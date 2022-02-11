@@ -80,6 +80,12 @@ public class Item {
         return height;
     }
 
+    public BigDecimal getVolume() {
+        BigDecimal volume = length.multiply(width.multiply(height));
+        return volume;
+
+    }
+
     /**
      * {@code Item} builder static inner class.
      */

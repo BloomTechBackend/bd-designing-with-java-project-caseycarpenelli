@@ -1,0 +1,25 @@
+@startuml
+class Box {
+length
+width
+height
+BigDecimal
+}
+class PolyBag {
+volume
+BigDecimal
+}
+class Packaging {
+canFitItem
+getMass
+}
+class Material {
+LAMINATED_PLASTIC
+CORRUGATE
+}
+
+Packaging --> Material
+PolyBag --|> Packaging
+Box --|> Packaging
+
+@enduml
