@@ -3,7 +3,7 @@ import java.math.*;
 
 import java.math.BigDecimal;
 
-public class PolyBag extends Packaging{
+public class PolyBag extends Packaging {
 
     private Material material = Material.LAMINATED_PLASTIC;
     private BigDecimal length;
