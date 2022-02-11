@@ -1,6 +1,5 @@
 package com.amazon.ata.datastore;
 
-import com.amazon.ata.types.Box;
 import com.amazon.ata.types.FcPackagingOption;
 import com.amazon.ata.types.FulfillmentCenter;
 import com.amazon.ata.types.Material;
