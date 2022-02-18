@@ -52,6 +52,6 @@ public class Box extends Packaging {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), length, width, height);
+        return Objects.hash(length, width, height, super.hashCode());
     }
 }

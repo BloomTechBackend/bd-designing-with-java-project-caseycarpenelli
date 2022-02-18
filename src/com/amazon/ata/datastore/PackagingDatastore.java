@@ -6,8 +6,14 @@ import com.amazon.ata.types.Material;
 import com.amazon.ata.types.Packaging;
 
 import java.math.BigDecimal;
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Stores all configured packaging pairs for all fulfillment centers.
@@ -17,6 +23,10 @@ public class PackagingDatastore {
     /**
      * The stored pairs of fulfillment centers to the packaging options they support.
      */
+//    private final HashMap<FulfillmentCenter, HashSet<FcPackagingOption>> packageMap = new HashMap<>();
+
+
+
     private final List<FcPackagingOption> fcPackagingOptions = Arrays.asList(
             createFcPackagingOption("IND1", Material.CORRUGATE, "10", "10", "10"),
             createFcPackagingOption("ABE2", Material.CORRUGATE, "20", "20", "20"),
