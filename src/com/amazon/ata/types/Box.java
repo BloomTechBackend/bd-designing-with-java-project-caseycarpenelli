@@ -11,14 +11,13 @@ public class Box extends Packaging {
     private BigDecimal height;
 
     public Box(Material material, BigDecimal length, BigDecimal width, BigDecimal height) {
-        super(material, length, width, height);
+        this.material = material;
+        this.length = length;
+        this.height = height;
+        this.width = width;
     }
 
     public boolean canFitItem(Item item) {
-        System.out.println(item);
-        System.out.println(item.getLength());
-        System.out.println(item.getWidth());
-        System.out.println(item.getHeight());
         return this.length.compareTo(item.getLength()) > 0 &&
                 this.width.compareTo(item.getWidth()) > 0 &&
                 this.height.compareTo(item.getHeight()) > 0;
@@ -53,5 +52,38 @@ public class Box extends Packaging {
     @Override
     public int hashCode() {
         return Objects.hash(length, width, height, super.hashCode());
+    }
+
+    @Override
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public BigDecimal getLength() {
+        return length;
+    }
+
+    public void setLength(BigDecimal length) {
+        this.length = length;
+    }
+
+    public BigDecimal getWidth() {
+        return width;
+    }
+
+    public void setWidth(BigDecimal width) {
+        this.width = width;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
     }
 }

@@ -91,6 +91,19 @@ class PackagingDAOTest {
             "When fulfillment center has multiple packaging that can fit item, return a ShipmentOption "
                 + "for each.");
     }
+    @Test
+    public void findShipmentOptions_3() throws Exception {
+        // GIVEN
+        packagingDAO = new PackagingDAO(datastore);
+
+        // WHEN
+        List<ShipmentOption> shipmentOptions = packagingDAO.findShipmentOptions(smallItem, iad2);
+
+        //THEN
+        assertEquals(3, shipmentOptions.size(),
+                "When fulfillment center has multiple packaging that can fit item, return a ShipmentOption "
+                        + "for each.");
+    }
 
     private Item createItem(String length, String width, String height) {
         return Item.builder()

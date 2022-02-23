@@ -10,30 +10,28 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A strategy to calculate the cost of a ShipmentOption based on its dollar cost.
- */
-public class MonetaryCostStrategy implements CostStrategy {
+public class CarbonCostStrategy implements CostStrategy {
 
-    private static final BigDecimal LABOR_COST = BigDecimal.valueOf(0.43);
+    private static final BigDecimal CARBON_UNITS_PER_GRAM_CORRUGATE = new BigDecimal("0.017");
+    private static final BigDecimal CARBON_UNITS_PER_GRAM_LAMINATED_PLASTIC = new BigDecimal("0.012");
     private final Map<Material, BigDecimal> materialCostPerGram;
 
-    /**
-     * Initializes a MonetaryCostStrategy.
-     */
-    public MonetaryCostStrategy() {
+    public CarbonCostStrategy() {
         materialCostPerGram = new HashMap<>();
-        materialCostPerGram.put(Material.CORRUGATE, BigDecimal.valueOf(.005));
-        materialCostPerGram.put(Material.LAMINATED_PLASTIC, BigDecimal.valueOf(.25));
+        materialCostPerGram.put(Material.CORRUGATE, CARBON_UNITS_PER_GRAM_CORRUGATE);
+        materialCostPerGram.put(Material.LAMINATED_PLASTIC, CARBON_UNITS_PER_GRAM_LAMINATED_PLASTIC);
     }
+
+
+
+
 
     @Override
     public ShipmentCost getCost(ShipmentOption shipmentOption) {
         Packaging packaging = shipmentOption.getPackaging();
         BigDecimal materialCost = this.materialCostPerGram.get(packaging.getMaterial());
 
-        BigDecimal cost = packaging.getMass().multiply(materialCost) // here--------------------------------------------
-            .add(LABOR_COST);
+        BigDecimal cost = packaging.getMass().multiply(materialCost);
 
         return new ShipmentCost(shipmentOption, cost);
     }

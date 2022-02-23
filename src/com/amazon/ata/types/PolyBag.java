@@ -10,12 +10,14 @@ public class PolyBag extends Packaging {
     private BigDecimal length;
     private BigDecimal width;
     private BigDecimal height;
-    private BigDecimal volume = length.multiply(width.multiply(height));
+    private BigDecimal volume;
 
 
 
-    public PolyBag(Material material, BigDecimal length, BigDecimal width, BigDecimal height) {
-        super(material, length, width, height);
+    public PolyBag(Material material, BigDecimal volume) {
+        this.material = material;
+        this.volume = volume;
+
     }
 
     public BigDecimal getMass() {
