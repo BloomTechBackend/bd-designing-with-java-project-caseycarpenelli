@@ -3,7 +3,6 @@ package com.amazon.ata.dao;
 import com.amazon.ata.datastore.PackagingDatastore;
 import com.amazon.ata.exceptions.NoPackagingFitsItemException;
 import com.amazon.ata.exceptions.UnknownFulfillmentCenterException;
-import com.amazon.ata.types.Box;
 import com.amazon.ata.types.FcPackagingOption;
 import com.amazon.ata.types.FulfillmentCenter;
 import com.amazon.ata.types.Item;
@@ -97,10 +96,10 @@ public class PackagingDAO {
                     }
                 }
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("Null fulfillment center code found");
         }
+
 
         // Notify caller about unexpected results
         if (!fcFound) {

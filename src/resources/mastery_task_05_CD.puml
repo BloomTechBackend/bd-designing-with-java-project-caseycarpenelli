@@ -14,5 +14,4 @@ WeightedCostStrategy ..|> CostStrategy
 WeightedCostStrategy --> MonetaryCostStrategy
 WeightedCostStrategy --> CarbonCostStrategy
 
-
 @enduml

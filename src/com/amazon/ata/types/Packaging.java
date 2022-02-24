@@ -33,8 +33,6 @@ public class Packaging {
 
     /**
      * Instantiates a new Packaging object.
-     * @param  - the Material of the package
-     * @param  - the height of the package
      */
     public Packaging() {
 

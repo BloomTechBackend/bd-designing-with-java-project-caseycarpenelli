@@ -1,6 +1,5 @@
 package com.amazon.ata.cost;
 
-import com.amazon.ata.types.Box;
 import com.amazon.ata.types.Material;
 import com.amazon.ata.types.Packaging;
 import com.amazon.ata.types.ShipmentCost;
@@ -32,7 +31,7 @@ public class MonetaryCostStrategy implements CostStrategy {
         Packaging packaging = shipmentOption.getPackaging();
         BigDecimal materialCost = this.materialCostPerGram.get(packaging.getMaterial());
 
-        BigDecimal cost = packaging.getMass().multiply(materialCost) // here--------------------------------------------
+        BigDecimal cost = packaging.getMass().multiply(materialCost)
             .add(LABOR_COST);
 
         return new ShipmentCost(shipmentOption, cost);

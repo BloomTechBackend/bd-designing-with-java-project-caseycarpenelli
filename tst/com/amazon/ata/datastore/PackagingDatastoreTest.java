@@ -31,6 +31,8 @@ class PackagingDatastoreTest {
             BigDecimal.valueOf(60), BigDecimal.valueOf(60), BigDecimal.valueOf(60));
     Packaging package2000cc = new PolyBag(Material.LAMINATED_PLASTIC, BigDecimal.valueOf(2000));
     Packaging package10000 = new PolyBag(Material.LAMINATED_PLASTIC, BigDecimal.valueOf(10000));
+    Packaging package5000 =  new PolyBag(Material.LAMINATED_PLASTIC, BigDecimal.valueOf(5000));
+    Packaging package6000 =  new PolyBag(Material.LAMINATED_PLASTIC, BigDecimal.valueOf(6000));
 
     FcPackagingOption ind1_10Cm = new FcPackagingOption(ind1, package10Cm);
     FcPackagingOption abe2_20Cm = new FcPackagingOption(abe2, package20Cm);
@@ -42,7 +44,17 @@ class PackagingDatastoreTest {
     FcPackagingOption pdx1_40Cm = new FcPackagingOption(pdx1, package40Cm);
     FcPackagingOption pdx1_60Cm = new FcPackagingOption(pdx1, package60Cm);
     FcPackagingOption iad2_2000cc = new FcPackagingOption(iad2, package2000cc);
+    FcPackagingOption ind1_2000cc = new FcPackagingOption(ind1, package2000cc);
+    FcPackagingOption abe2_2000cc = new FcPackagingOption(abe2, package2000cc);
+    FcPackagingOption yow4_2000cc = new FcPackagingOption(yow4, package2000cc);
+    FcPackagingOption yow4_10000cc = new FcPackagingOption(yow4, package10000);
     FcPackagingOption iad2_10000cc = new FcPackagingOption(iad2, package10000);
+    FcPackagingOption pdx1_10000cc = new FcPackagingOption(pdx1, package10000);
+    FcPackagingOption abe2_6000cc = new FcPackagingOption(abe2, package6000);
+    FcPackagingOption ind1_5000cc = new FcPackagingOption(ind1, package5000);
+    FcPackagingOption yow4_5000cc = new FcPackagingOption(yow4, package5000);
+    FcPackagingOption iad2_5000cc = new FcPackagingOption(iad2, package5000);
+    FcPackagingOption pdx1_5000cc = new FcPackagingOption(pdx1, package5000);
 
 
     @Test
@@ -50,8 +62,10 @@ class PackagingDatastoreTest {
         // GIVEN
         PackagingDatastore packagingDatastore = new PackagingDatastore();
         List<FcPackagingOption> expectedPackagingOptions = Arrays.asList(ind1_10Cm, abe2_20Cm, abe2_40Cm, yow4_10Cm,
-                yow4_20Cm, yow4_60Cm, iad2_20Cm, iad2_20Cm, pdx1_40Cm, pdx1_60Cm, pdx1_60Cm, iad2_2000cc, iad2_10000cc);
-        //adding polybag options
+                yow4_20Cm, yow4_60Cm, iad2_20Cm, iad2_20Cm, pdx1_40Cm, pdx1_60Cm, pdx1_60Cm, iad2_2000cc, iad2_10000cc,
+                ind1_2000cc, abe2_2000cc, yow4_2000cc, yow4_10000cc, pdx1_10000cc, abe2_6000cc, ind1_5000cc,
+                yow4_5000cc, yow4_5000cc, iad2_5000cc, pdx1_5000cc);
+
         // WHEN
         List<FcPackagingOption> fcPackagingOptions = packagingDatastore.getFcPackagingOptions();
 

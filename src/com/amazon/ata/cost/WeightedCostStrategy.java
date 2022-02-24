@@ -1,7 +1,6 @@
 package com.amazon.ata.cost;
 
 import com.amazon.ata.types.Material;
-import com.amazon.ata.types.Packaging;
 import com.amazon.ata.types.ShipmentCost;
 import com.amazon.ata.types.ShipmentOption;
 
@@ -12,8 +11,8 @@ import java.util.Map;
 public class WeightedCostStrategy implements CostStrategy {
 
     private final Map<Material, BigDecimal> materialCostPerGram;
-    public MonetaryCostStrategy monetaryCostStrategy;
-    public CarbonCostStrategy carbonCostStrategy;
+    private MonetaryCostStrategy monetaryCostStrategy;
+    private CarbonCostStrategy carbonCostStrategy;
 
 
     public WeightedCostStrategy(MonetaryCostStrategy monetaryCostStrategy, CarbonCostStrategy carbonCostStrategy) {
