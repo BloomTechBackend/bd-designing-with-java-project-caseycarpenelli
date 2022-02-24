@@ -17,7 +17,6 @@ public class PolyBag extends Packaging {
     public PolyBag(Material material, BigDecimal volume) {
         this.material = material;
         this.volume = volume;
-
     }
 
     public BigDecimal getMass() {
