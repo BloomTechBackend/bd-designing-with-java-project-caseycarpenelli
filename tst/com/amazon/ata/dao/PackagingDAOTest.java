@@ -11,17 +11,18 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PackagingDAOTest {
 
     private Item testItem = createItem("30", "30", "30");
     private Item smallItem = createItem("5", "5", "5");
+    private Item oversizedItem = createItem("100", "100", "100");
 
     private FulfillmentCenter ind1 = new FulfillmentCenter("IND1");
     private FulfillmentCenter abe2 = new FulfillmentCenter("ABE2");
     private FulfillmentCenter iad2 = new FulfillmentCenter("IAD2");
+    private FulfillmentCenter iad1 = new FulfillmentCenter("IAD1");
 
     private PackagingDatastore datastore = new PackagingDatastore();
 
@@ -104,6 +105,19 @@ class PackagingDAOTest {
                 "When fulfillment center has multiple packaging that can fit item, return a ShipmentOption "
                         + "for each.");
     }
+    @Test
+    public void findShipmentOptions_catches_over_sized_packaging () throws RuntimeException, UnknownFulfillmentCenterException, NoPackagingFitsItemException {
+        packagingDAO = new PackagingDAO(datastore);
+        int indicator = 0;
+            try {
+                List<ShipmentOption> shipmentOptions = packagingDAO.findShipmentOptions(oversizedItem, iad2);
+            } catch (NoPackagingFitsItemException e) {
+                indicator = 1;
+            }
+        assertEquals(1, indicator);
+    }
+
+
 
     private Item createItem(String length, String width, String height) {
         return Item.builder()

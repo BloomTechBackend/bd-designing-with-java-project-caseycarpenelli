@@ -78,34 +78,44 @@ public class PackagingDAO {
             throws UnknownFulfillmentCenterException, NoPackagingFitsItemException {
 
         // Check all FcPackagingOptions for a suitable Packaging in the given FulfillmentCenter
-        List<ShipmentOption> result = new ArrayList<>();
-        boolean fcFound = false;
-        try {
-            for (FcPackagingOption fcPackagingOption : fcPackagingOptions.get(fulfillmentCenter)) {
-                Packaging packaging = fcPackagingOption.getPackaging();
-                String fcCode = fcPackagingOption.getFulfillmentCenter().getFcCode();
 
-                if (fcCode.equals(fulfillmentCenter.getFcCode())) {
-                    fcFound = true;
-                    if (packaging.canFitItem(item)) {
-                        result.add(ShipmentOption.builder()
-                                .withItem(item)
-                                .withPackaging(packaging)
-                                .withFulfillmentCenter(fulfillmentCenter)
-                                .build());
+        List<ShipmentOption> result = new ArrayList<>();
+
+        boolean fcFound = false;
+        if (fcPackagingOptions.get(fulfillmentCenter) != null) {
+
+            for (FcPackagingOption fcPackagingOption : fcPackagingOptions.get(fulfillmentCenter)) {
+
+                try {
+                    Packaging packaging = fcPackagingOption.getPackaging();
+                    String fcCode = fcPackagingOption.getFulfillmentCenter().getFcCode();
+
+                    if (fcCode.equals(fulfillmentCenter.getFcCode())) {
+                        fcFound = true;
+                        if (packaging.canFitItem(item)) {
+                            result.add(ShipmentOption.builder()
+                                    .withItem(item)
+                                    .withPackaging(packaging)
+                                    .withFulfillmentCenter(fulfillmentCenter)
+                                    .build());
+                        }
                     }
+                } catch (Exception e) {
+
+                    System.out.println("null attribute detected. iterating to next instance");
+                    continue;
                 }
             }
-        } catch (NullPointerException e) {
-            System.out.println("Null fulfillment center code found");
         }
 
 
-        // Notify caller about unexpected results
-        if (!fcFound) {
-            throw new UnknownFulfillmentCenterException(
-                    String.format("Unknown FC: %s!", fulfillmentCenter.getFcCode()));
-        }
+
+//         Notify caller about unexpected
+            if (!fcFound) {
+                throw new UnknownFulfillmentCenterException(
+                        String.format("Unknown FC: %s!", fulfillmentCenter.getFcCode()));
+            }
+
 
         if (result.isEmpty()) {
             throw new NoPackagingFitsItemException(
